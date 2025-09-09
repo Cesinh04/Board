@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Notas</title>
+</head>
+<body>
+<h1>Notas</h1>
+<form th:action="@{/notes}" method="post">
+    <input type="text" name="title" placeholder="Título" required>
+    <input type="text" name="content" placeholder="Conteúdo" required>
+    <button type="submit">Adicionar</button>
+</form>
+<ul>
+    <li th:each="note : ${notes}">
+        <b th:text="${note.title}"></b>: <span th:text="${note.content}"></span>
+        <form th:action="@{/notes/delete/{id}(id=${note.id})}" method="post" style="display:inline">
+            <button type="submit">Excluir</button>
+        </form>
+    </li>
+</ul>
+</body>
+</html>
